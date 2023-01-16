@@ -1,6 +1,6 @@
-##Spring Boot Project
+#Spring Boot Project
 
-Dependencies / Starters:
+##Dependencies / Starters:
 
 Persistence:
 * H2
