@@ -79,13 +79,82 @@ class LaptopControllerTest {
 
     @Test
     void update() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        //To test this you will need to create a laptop
+        String json = """
+                {
+                    "model": "MSI",
+                    "price": 400.0
+                }
+                """;
+
+        HttpEntity<String> request = new HttpEntity<>(json,headers);
+        testRestTemplate.exchange("/api/laptops", HttpMethod.POST, request, Laptop.class);
+
+        //and then test it
+        String jsonupdate = """
+                {
+                    "id": 1,
+                    "model": "Lenovo",
+                    "price": 450.0
+                }
+                """;
+
+        HttpEntity<String> requestUpdate = new HttpEntity<>(jsonupdate,headers);
+        ResponseEntity<Laptop> responseUpdate = testRestTemplate.exchange("/api/laptops", HttpMethod.PUT, requestUpdate, Laptop.class);
+
+        Laptop result = responseUpdate.getBody();
+
+        assertEquals(1L, result.getId());
+        assertEquals("Lenovo", result.getModel());
     }
 
     @Test
     void delete() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        //To test this you will need to create a laptop
+        String json = """
+                {
+                    "model": "MSI",
+                    "price": 400.0
+                }
+                """;
+
+        HttpEntity<String> request = new HttpEntity<>(json,headers);
+        testRestTemplate.exchange("/api/laptops", HttpMethod.POST, request, Laptop.class);
+
+        //and then test it
+        ResponseEntity<Laptop> responseDelete = testRestTemplate.exchange("/api/laptops/1",HttpMethod.DELETE, HttpEntity.EMPTY,Laptop.class);
+
+        assertEquals(HttpStatus.NO_CONTENT,responseDelete.getStatusCode());
     }
 
     @Test
     void deleteAll() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        //To test this you will need to create a laptop
+        String json = """
+                {
+                    "model": "MSI",
+                    "price": 400.0
+                }
+                """;
+
+        HttpEntity<String> request = new HttpEntity<>(json,headers);
+        testRestTemplate.exchange("/api/laptops", HttpMethod.POST, request, Laptop.class);
+
+        //and then test it
+        ResponseEntity<Laptop> responseDelete = testRestTemplate.exchange("/api/laptops",HttpMethod.DELETE, HttpEntity.EMPTY,Laptop.class);
+
+        assertEquals(HttpStatus.NO_CONTENT,responseDelete.getStatusCode());
     }
 }
