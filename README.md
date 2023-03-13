@@ -1,6 +1,6 @@
-#Spring Boot Project
+# Spring Boot Project
 
-##Dependencies / Starters:
+## Dependencies / Starters:
 
 Persistence:
 * H2
@@ -10,11 +10,12 @@ Web:
 * Spring Web
 * Spring Boot Dev Tools
 
+Security:
+* Spring Security
+
+API docs:
+
+* OpenAPI Swagger
+
 
 API REST Application with access from Postman or Browser.
-
-##Book Entity
-
-1. Book.class
-2. BookRepository
-3. BookController
