@@ -4,6 +4,7 @@
 
 Persistence:
 * H2
+* PostgreSQL
 * Spring Data JPA
 
 Web:
@@ -12,6 +13,7 @@ Web:
 
 Security:
 * Spring Security
+* JWT
 
 API docs:
 
