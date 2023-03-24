@@ -18,6 +18,7 @@ Security:
 API docs:
 
 * OpenAPI Swagger
+* Postman file
 
 
 API REST Application with access from Postman or Browser.
